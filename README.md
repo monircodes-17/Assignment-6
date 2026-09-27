@@ -1,36 +1,171 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# FitLog — Workout Library
 
-## Getting Started
+FitLog is a dark, responsive workout library and planning application built with Next.js, TypeScript, and Tailwind CSS. Users can browse workouts, view detailed exercise information, create a daily workout plan, save workouts for later, and track completed exercises.
 
-First, run the development server:
+## Live Site
+
+https://fitlog-assignment-6-sigma.vercel.app/
+
+## GitHub Repository
+
+https://github.com/monircodes-17/Assignment-6
+
+## Features
+
+* Browse all available workouts from the FitLog API
+* View detailed workout information
+* Add workouts to Today's Plan
+* Maximum 5 workouts in Today's Plan
+* Save workouts for later
+* Remove workouts from Today's Plan or Saved
+* Mark workouts as completed
+* Live workout statistics for exercises, minutes, and calories
+* Sort workouts by Duration, Calories, or Rating
+* Responsive design for mobile, tablet, and desktop
+* Loading, empty, error, and 404 states
+* Toast notifications for user actions
+* LocalStorage persistence for plan, saved workouts, and completed workouts
+* Dynamic workout detail pages
+
+## Technologies Used
+
+* Next.js
+* React.js
+* TypeScript
+* Tailwind CSS
+* React Context API
+* Lucide React
+* React Toastify
+* REST API
+* LocalStorage
+* Vercel
+
+## API
+
+FitLog uses the following API:
+
+All Workouts:
+https://api.abcz.workers.dev/api/fitlog
+
+Single Workout:
+https://api.abcz.workers.dev/api/fitlog/:id
+
+Alternative API:
+
+All Workouts:
+https://api.api-store.workers.dev/api/fitlog
+
+Single Workout:
+https://api.api-store.workers.dev/api/fitlog/:id
+
+## Main Pages
+
+### Home
+
+Displays the hero section and the complete workout library.
+
+### Workout Details
+
+Shows workout image, description, muscle groups, equipment, difficulty, sets, reps, duration, calories, rating, and instructions.
+
+### My Plan
+
+Allows users to manage Today's Plan and Saved workouts, view statistics, mark workouts as completed, and remove workouts.
+
+### 404 Page
+
+Displays a custom not-found page for invalid routes or workout IDs.
+
+## Project Structure
+
+```text
+src/
+├── app/
+│   ├── workout/
+│   │   └── [id]/
+│   │       └── page.tsx
+│   ├── my-plan/
+│   │   └── page.tsx
+│   ├── error.tsx
+│   ├── loading.tsx
+│   ├── not-found.tsx
+│   ├── globals.css
+│   ├── layout.tsx
+│   └── page.tsx
+│
+├── components/
+│   ├── Navbar.tsx
+│   ├── Hero.tsx
+│   ├── WorkoutLibrary.tsx
+│   ├── WorkoutCard.tsx
+│   ├── WorkoutDetails.tsx
+│   ├── WorkoutStats.tsx
+│   ├── SortDropdown.tsx
+│   ├── EmptyState.tsx
+│   ├── LoadingSpinner.tsx
+│   ├── ToastProvider.tsx
+│   └── Footer.tsx
+│
+├── context/
+│   └── PlanContext.tsx
+│
+├── lib/
+│   ├── api.ts
+│   ├── storage.ts
+│   └── utils.ts
+│
+└── types/
+    └── workout.ts
+```
+
+## Installation
+
+Clone the repository:
+
+```bash
+git clone https://github.com/monircodes-17/Assignment-6.git
+```
+
+Go to the project directory:
+
+```bash
+cd Assignment-6
+```
+
+Install dependencies:
+
+```bash
+npm install
+```
+
+Run the development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```text
+http://localhost:3000
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Production Build
 
-## Learn More
+To create a production build:
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+npm run build
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+To start the production server:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```bash
+npm start
+```
 
-## Deploy on Vercel
+## Author
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+**Md. Mehidy Hasan Monir**
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Built as part of Programming Hero Assignment 6.
