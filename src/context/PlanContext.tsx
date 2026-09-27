@@ -20,12 +20,12 @@ setStoredSaved,
 interface PlanContextType {
 plan: Workout[];
 saved: Workout[];
-completedIds: string[];
+completedIds: number[];
 addToPlan: (workout: Workout) => boolean;
-removeFromPlan: (id: string) => void;
+removeFromPlan: (id: number) => void;
 addToSaved: (workout: Workout) => boolean;
-removeFromSaved: (id: string) => void;
-markAsDone: (id: string) => void;
+removeFromSaved: (id: number) => void;
+markAsDone: (id: number) => void;
 }
 
 const PlanContext = createContext<PlanContextType | undefined>(
@@ -41,40 +41,30 @@ children,
 }: PlanProviderProps) {
 const [plan, setPlan] = useState<Workout[]>([]);
 const [saved, setSaved] = useState<Workout[]>([]);
-const [completedIds, setCompletedIds] = useState<string[]>(
+const [completedIds, setCompletedIds] = useState<number[]>(
 []
 );
 const [isLoaded, setIsLoaded] = useState(false);
 
-// Load plan and saved workouts from localStorage
 useEffect(() => {
 setPlan(getStoredPlan());
 setSaved(getStoredSaved());
-
-
-// Start with no completed workouts
 setCompletedIds([]);
-
 setIsLoaded(true);
-
-
 }, []);
 
-// Save today's plan
 useEffect(() => {
 if (isLoaded) {
 setStoredPlan(plan);
 }
 }, [plan, isLoaded]);
 
-// Save bookmarked workouts
 useEffect(() => {
 if (isLoaded) {
 setStoredSaved(saved);
 }
 }, [saved, isLoaded]);
 
-// Save completed workout IDs
 useEffect(() => {
 if (isLoaded) {
 setStoredCompleted(completedIds);
@@ -103,7 +93,7 @@ return true;
 
 };
 
-const removeFromPlan = (id: string): void => {
+const removeFromPlan = (id: number): void => {
 setPlan((prev) =>
 prev.filter((workout) => workout.id !== id)
 );
@@ -120,6 +110,7 @@ toast.info("Workout is already saved!");
 return false;
 }
 
+
 setSaved((prev) => [...prev, workout]);
 toast.success("Saved for later!");
 
@@ -128,17 +119,18 @@ return true;
 
 };
 
-const removeFromSaved = (id: string): void => {
+const removeFromSaved = (id: number): void => {
 setSaved((prev) =>
 prev.filter((workout) => workout.id !== id)
 );
+
 
 toast.info("Removed from Saved");
 
 
 };
 
-const markAsDone = (id: string): void => {
+const markAsDone = (id: number): void => {
 if (completedIds.includes(id)) {
 return;
 }
